@@ -10,9 +10,13 @@ import java.util.List;
 public interface RecruitApplicationRepository extends JpaRepository<RecruitApplication, Long> {
     List<RecruitApplication> findByPostId(Long postId);
     List<RecruitApplication> findByApplicantProfileId(Long applicantProfileId);
-    
+
     @Query("SELECT a FROM RecruitApplication a JOIN RecruitPost p ON a.postId = p.id " +
            "WHERE p.writerProfileId = :profileId ORDER BY a.applicationDate DESC")
     List<RecruitApplication> findByTeamProfile(@Param("profileId") Long profileId);
+
+    // 승인된 신청 개수 조회
+    @Query("SELECT COUNT(a) FROM RecruitApplication a WHERE a.postId = :postId AND a.status = 'ACCEPTED'")
+    Long countAcceptedByPostId(@Param("postId") Long postId);
 }
 

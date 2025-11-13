@@ -1,7 +1,9 @@
 package com.sportshub.recruit.service;
 
 import com.sportshub.recruit.domain.RecruitPost;
+import com.sportshub.recruit.repository.RecruitApplicationRepository;
 import com.sportshub.recruit.repository.RecruitPostRepository;
+import com.sportshub.recruit.web.dto.RecruitDtos.PostResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -9,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class RecruitService {
     private final RecruitPostRepository recruitPostRepository;
+    private final RecruitApplicationRepository recruitApplicationRepository;
 
     @Transactional
     public RecruitPost create(RecruitPost p) {
@@ -58,5 +62,16 @@ public class RecruitService {
         if (status != null && !status.isBlank()) return recruitPostRepository.findByStatus(status);
         if (category != null && !category.isBlank()) return recruitPostRepository.findByCategory(category);
         return recruitPostRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostResponse> listWithStats(Long teamId, Long writerProfileId, String status, String category) {
+        List<RecruitPost> posts = list(teamId, writerProfileId, status, category);
+        return posts.stream()
+                .map(post -> {
+                    Long acceptedCount = recruitApplicationRepository.countAcceptedByPostId(post.getId());
+                    return new PostResponse(post, acceptedCount);
+                })
+                .collect(Collectors.toList());
     }
 }

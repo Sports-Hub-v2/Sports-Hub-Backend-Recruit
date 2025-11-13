@@ -3,6 +3,7 @@ package com.sportshub.recruit.web;
 import com.sportshub.recruit.domain.RecruitPost;
 import com.sportshub.recruit.service.RecruitService;
 import com.sportshub.recruit.web.dto.RecruitDtos.PostCreateRequest;
+import com.sportshub.recruit.web.dto.RecruitDtos.PostResponse;
 import com.sportshub.recruit.web.dto.RecruitDtos.PostUpdateRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -45,10 +46,10 @@ public class RecruitController {
     }
 
     @GetMapping
-    public List<RecruitPost> list(@RequestParam(required = false) Long teamId,
-                                  @RequestParam(required = false) Long writerProfileId,
-                                  @RequestParam(required = false) String status,
-                                  @RequestParam(required = false) String category) {
-        return recruitService.list(teamId, writerProfileId, status, category);
+    public List<PostResponse> list(@RequestParam(required = false) Long teamId,
+                                   @RequestParam(required = false) Long writerProfileId,
+                                   @RequestParam(required = false) String status,
+                                   @RequestParam(required = false) String category) {
+        return recruitService.listWithStats(teamId, writerProfileId, status, category);
     }
 }
