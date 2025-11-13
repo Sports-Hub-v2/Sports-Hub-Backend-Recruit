@@ -31,6 +31,13 @@ public class RecruitService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "post not found"));
     }
 
+    @Transactional(readOnly = true)
+    public PostResponse getWithStats(Long id) {
+        RecruitPost post = get(id);
+        Long acceptedCount = recruitApplicationRepository.countAcceptedByPostId(post.getId());
+        return new PostResponse(post, acceptedCount);
+    }
+
     @Transactional
     public RecruitPost update(Long id, RecruitPost patch) {
         RecruitPost p = get(id);

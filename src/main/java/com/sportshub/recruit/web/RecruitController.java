@@ -28,8 +28,8 @@ public class RecruitController {
     }
 
     @GetMapping("/{id}")
-    public RecruitPost get(@PathVariable Long id) {
-        return recruitService.get(id);
+    public PostResponse get(@PathVariable Long id) {
+        return recruitService.getWithStats(id);
     }
 
     @PatchMapping("/{id}")
