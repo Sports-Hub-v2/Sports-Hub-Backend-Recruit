@@ -6,6 +6,7 @@ import com.sportshub.recruit.repository.RecruitPostRepository;
 import com.sportshub.recruit.web.dto.RecruitDtos.PostResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class RecruitService {
     private final RecruitPostRepository recruitPostRepository;
     private final RecruitApplicationRepository recruitApplicationRepository;
+    private final JdbcTemplate jdbcTemplate;
 
     @Transactional
     public RecruitPost create(RecruitPost p) {
@@ -35,7 +37,25 @@ public class RecruitService {
     public PostResponse getWithStats(Long id) {
         RecruitPost post = get(id);
         Long acceptedCount = recruitApplicationRepository.countAcceptedByPostId(post.getId());
-        return new PostResponse(post, acceptedCount);
+        PostResponse response = new PostResponse(post, acceptedCount);
+        // 프로필 이름 조회
+        if (post.getWriterProfileId() != null) {
+            String authorName = getProfileName(post.getWriterProfileId());
+            response.setAuthorName(authorName);
+        }
+        return response;
+    }
+
+    private String getProfileName(Long profileId) {
+        try {
+            return jdbcTemplate.queryForObject(
+                "SELECT name FROM profiles WHERE id = ?",
+                String.class,
+                profileId
+            );
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Transactional
@@ -77,7 +97,13 @@ public class RecruitService {
         return posts.stream()
                 .map(post -> {
                     Long acceptedCount = recruitApplicationRepository.countAcceptedByPostId(post.getId());
-                    return new PostResponse(post, acceptedCount);
+                    PostResponse response = new PostResponse(post, acceptedCount);
+                    // 프로필 이름 조회
+                    if (post.getWriterProfileId() != null) {
+                        String authorName = getProfileName(post.getWriterProfileId());
+                        response.setAuthorName(authorName);
+                    }
+                    return response;
                 })
                 .collect(Collectors.toList());
     }
