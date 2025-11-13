@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class RecruitDtos {
     @Data
@@ -17,11 +18,20 @@ public class RecruitDtos {
         private String title;
         private String content;
         private String region;
+        private String subRegion;
         private String imageUrl;
         private LocalDate matchDate;
+        private LocalTime gameTime;
         private String category;
         private String targetType;
         private String status;
+        // 모집 조건
+        private Integer requiredPersonnel;
+        private String preferredPositions;
+        private String ageGroup;
+        private String skillLevel;
+        // 경기 장소
+        private String fieldLocation;
     }
 
     @Data
@@ -31,11 +41,20 @@ public class RecruitDtos {
         private String title;
         private String content;
         private String region;
+        private String subRegion;
         private String imageUrl;
         private LocalDate matchDate;
+        private LocalTime gameTime;
         private String category;
         private String targetType;
         private String status;
+        // 모집 조건
+        private Integer requiredPersonnel;
+        private String preferredPositions;
+        private String ageGroup;
+        private String skillLevel;
+        // 경기 장소
+        private String fieldLocation;
     }
 
     @Data
@@ -60,13 +79,24 @@ public class RecruitDtos {
         private String title;
         private String content;
         private String region;
+        private String subRegion;
         private String imageUrl;
         private LocalDate matchDate;
+        private LocalTime gameTime;
         private String category;
         private String targetType;
         private String status;
         private java.time.LocalDateTime createdAt;
         private Long acceptedCount;
+
+        // 모집 조건
+        private Integer requiredPersonnel;
+        private String preferredPositions;
+        private String ageGroup;
+        private String skillLevel;
+
+        // 경기 장소
+        private String fieldLocation;
 
         public PostResponse(com.sportshub.recruit.domain.RecruitPost post, Long acceptedCount) {
             this.id = post.getId();
@@ -75,13 +105,20 @@ public class RecruitDtos {
             this.title = post.getTitle();
             this.content = post.getContent();
             this.region = post.getRegion();
+            this.subRegion = post.getSubRegion();
             this.imageUrl = post.getImageUrl();
             this.matchDate = post.getMatchDate();
+            this.gameTime = post.getGameTime();
             this.category = post.getCategory();
             this.targetType = post.getTargetType();
             this.status = post.getStatus();
             this.createdAt = post.getCreatedAt();
             this.acceptedCount = acceptedCount;
+            this.requiredPersonnel = post.getRequiredPersonnel();
+            this.preferredPositions = post.getPreferredPositions();
+            this.ageGroup = post.getAgeGroup();
+            this.skillLevel = post.getSkillLevel();
+            this.fieldLocation = post.getFieldLocation();
         }
     }
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "recruit_posts")
@@ -32,6 +33,9 @@ public class RecruitPost {
 
     private String region;
 
+    @Column(name = "sub_region")
+    private String subRegion;
+
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -41,8 +45,28 @@ public class RecruitPost {
     @Column(name = "match_date")
     private LocalDate matchDate;
 
+    @Column(name = "game_time")
+    private LocalTime gameTime;
+
     private String category;
     private String targetType;
     private String status;
+
+    // 모집 조건 필드
+    @Column(name = "required_personnel")
+    private Integer requiredPersonnel;
+
+    @Column(name = "preferred_positions")
+    private String preferredPositions;
+
+    @Column(name = "age_group")
+    private String ageGroup;
+
+    @Column(name = "skill_level")
+    private String skillLevel;
+
+    // 경기 장소 (네이버 지도로 검색 가능)
+    @Column(name = "field_location")
+    private String fieldLocation;
 }
 
