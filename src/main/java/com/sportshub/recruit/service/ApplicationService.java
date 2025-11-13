@@ -18,8 +18,7 @@ public class ApplicationService {
     @Transactional
     public RecruitApplication apply(Long postId, RecruitApplication a) {
         a.setPostId(postId);
-        // 조기축구 특성상 신청 즉시 승인 (ACCEPTED)
-        if (a.getStatus() == null || a.getStatus().isBlank()) a.setStatus("ACCEPTED");
+        if (a.getStatus() == null || a.getStatus().isBlank()) a.setStatus("PENDING");
         return applicationRepository.save(a);
     }
 
