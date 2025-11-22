@@ -77,6 +77,7 @@ public class RecruitDtos {
         private Long teamId;
         private Long writerProfileId;
         private String authorName;  // 작성자 이름
+        private String teamName;    // 팀 이름
         private String title;
         private String content;
         private String region;
@@ -104,6 +105,7 @@ public class RecruitDtos {
             this.teamId = post.getTeamId();
             this.writerProfileId = post.getWriterProfileId();
             this.authorName = null;  // TODO: user-service에서 프로필 이름 조회
+            this.teamName = null;    // TODO: team-service에서 팀 이름 조회
             this.title = post.getTitle();
             this.content = post.getContent();
             this.region = post.getRegion();

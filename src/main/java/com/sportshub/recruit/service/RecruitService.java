@@ -43,6 +43,11 @@ public class RecruitService {
             String authorName = getProfileName(post.getWriterProfileId());
             response.setAuthorName(authorName);
         }
+        // 팀 이름 조회
+        if (post.getTeamId() != null) {
+            String teamName = getTeamName(post.getTeamId());
+            response.setTeamName(teamName);
+        }
         return response;
     }
 
@@ -52,6 +57,18 @@ public class RecruitService {
                 "SELECT name FROM profiles WHERE id = ?",
                 String.class,
                 profileId
+            );
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private String getTeamName(Long teamId) {
+        try {
+            return jdbcTemplate.queryForObject(
+                "SELECT team_name FROM teams WHERE id = ?",
+                String.class,
+                teamId
             );
         } catch (Exception e) {
             return null;
@@ -102,6 +119,11 @@ public class RecruitService {
                     if (post.getWriterProfileId() != null) {
                         String authorName = getProfileName(post.getWriterProfileId());
                         response.setAuthorName(authorName);
+                    }
+                    // 팀 이름 조회
+                    if (post.getTeamId() != null) {
+                        String teamName = getTeamName(post.getTeamId());
+                        response.setTeamName(teamName);
                     }
                     return response;
                 })
