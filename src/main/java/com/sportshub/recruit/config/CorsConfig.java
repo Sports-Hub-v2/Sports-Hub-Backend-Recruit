@@ -20,7 +20,9 @@ public class CorsConfig {
             "http://localhost:3000",
             "http://localhost:5173",
             "http://127.0.0.1:3000",
-            "http://127.0.0.1:5173"
+            "http://127.0.0.1:5173",
+            "http://43.202.219.106:5173",
+            "http://43.202.219.106:3000"
         ));
 
         // 허용할 HTTP 메서드들
