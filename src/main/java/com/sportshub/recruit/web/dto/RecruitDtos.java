@@ -32,6 +32,20 @@ public class RecruitDtos {
         private String skillLevel;
         // 경기 장소
         private String fieldLocation;
+        // 경기 매치 관련 필드
+        private String matchType;
+        private String teamSize;
+        private String fieldType;
+        private Integer cost;
+        private Boolean parkingAvailable;
+        private Boolean showerFacilities;
+        // 팀 모집 관련 필드
+        private String activityDays;
+        private String activityTime;
+        // 추가 공통 필드
+        private Integer minPlayers;
+        private Integer maxPlayers;
+        private String matchRules;
     }
 
     @Data
@@ -55,6 +69,20 @@ public class RecruitDtos {
         private String skillLevel;
         // 경기 장소
         private String fieldLocation;
+        // 경기 매치 관련 필드
+        private String matchType;
+        private String teamSize;
+        private String fieldType;
+        private Integer cost;
+        private Boolean parkingAvailable;
+        private Boolean showerFacilities;
+        // 팀 모집 관련 필드
+        private String activityDays;
+        private String activityTime;
+        // 추가 공통 필드
+        private Integer minPlayers;
+        private Integer maxPlayers;
+        private String matchRules;
     }
 
     @Data
@@ -100,6 +128,23 @@ public class RecruitDtos {
         // 경기 장소
         private String fieldLocation;
 
+        // 경기 매치 관련 필드
+        private String matchType;
+        private String teamSize;
+        private String fieldType;
+        private Integer cost;
+        private Boolean parkingAvailable;
+        private Boolean showerFacilities;
+
+        // 팀 모집 관련 필드
+        private String activityDays;
+        private String activityTime;
+
+        // 추가 공통 필드
+        private Integer minPlayers;
+        private Integer maxPlayers;
+        private String matchRules;
+
         public PostResponse(com.sportshub.recruit.domain.RecruitPost post, Long acceptedCount) {
             this.id = post.getId();
             this.teamId = post.getTeamId();
@@ -123,6 +168,17 @@ public class RecruitDtos {
             this.ageGroup = post.getAgeGroup();
             this.skillLevel = post.getSkillLevel();
             this.fieldLocation = post.getFieldLocation();
+            this.matchType = post.getMatchType();
+            this.teamSize = post.getTeamSize();
+            this.fieldType = post.getFieldType();
+            this.cost = post.getCost();
+            this.parkingAvailable = post.getParkingAvailable();
+            this.showerFacilities = post.getShowerFacilities();
+            this.activityDays = post.getActivityDays();
+            this.activityTime = post.getActivityTime();
+            this.minPlayers = post.getMinPlayers();
+            this.maxPlayers = post.getMaxPlayers();
+            this.matchRules = post.getMatchRules();
         }
     }
 }

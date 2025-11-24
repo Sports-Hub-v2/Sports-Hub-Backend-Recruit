@@ -68,5 +68,40 @@ public class RecruitPost {
     // 경기 장소 (네이버 지도로 검색 가능)
     @Column(name = "field_location")
     private String fieldLocation;
+
+    // 경기 매치 관련 필드
+    @Column(name = "match_type")
+    private String matchType; // 친선경기, 연습경기, 리그전, 토너먼트
+
+    @Column(name = "team_size")
+    private String teamSize; // 5vs5, 6vs6, 7vs7, 8vs8, 11vs11
+
+    @Column(name = "field_type")
+    private String fieldType; // 잔디구장, 인조잔디, 풋살장
+
+    private Integer cost; // 참가비
+
+    @Column(name = "parking_available")
+    private Boolean parkingAvailable; // 주차 가능 여부
+
+    @Column(name = "shower_facilities")
+    private Boolean showerFacilities; // 샤워 시설 여부
+
+    // 팀 모집 관련 필드
+    @Column(name = "activity_days")
+    private String activityDays; // 주 활동 요일
+
+    @Column(name = "activity_time")
+    private String activityTime; // 주 활동 시간대
+
+    // 추가 공통 필드
+    @Column(name = "min_players")
+    private Integer minPlayers; // 최소 인원
+
+    @Column(name = "max_players")
+    private Integer maxPlayers; // 최대 인원
+
+    @Column(name = "match_rules", columnDefinition = "TEXT")
+    private String matchRules; // 경기 규칙 및 특이사항
 }
 

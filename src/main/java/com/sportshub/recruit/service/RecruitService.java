@@ -81,13 +81,32 @@ public class RecruitService {
         if (patch.getTitle() != null) p.setTitle(patch.getTitle());
         if (patch.getContent() != null) p.setContent(patch.getContent());
         if (patch.getRegion() != null) p.setRegion(patch.getRegion());
+        if (patch.getSubRegion() != null) p.setSubRegion(patch.getSubRegion());
         if (patch.getImageUrl() != null) p.setImageUrl(patch.getImageUrl());
         if (patch.getMatchDate() != null) p.setMatchDate(patch.getMatchDate());
+        if (patch.getGameTime() != null) p.setGameTime(patch.getGameTime());
         if (patch.getCategory() != null) p.setCategory(patch.getCategory());
         if (patch.getTargetType() != null) p.setTargetType(patch.getTargetType());
         if (patch.getStatus() != null) p.setStatus(patch.getStatus());
         if (patch.getTeamId() != null) p.setTeamId(patch.getTeamId());
         if (patch.getWriterProfileId() != null) p.setWriterProfileId(patch.getWriterProfileId());
+        if (patch.getRequiredPersonnel() != null) p.setRequiredPersonnel(patch.getRequiredPersonnel());
+        if (patch.getPreferredPositions() != null) p.setPreferredPositions(patch.getPreferredPositions());
+        if (patch.getAgeGroup() != null) p.setAgeGroup(patch.getAgeGroup());
+        if (patch.getSkillLevel() != null) p.setSkillLevel(patch.getSkillLevel());
+        if (patch.getFieldLocation() != null) p.setFieldLocation(patch.getFieldLocation());
+        // 새로 추가된 필드들
+        if (patch.getMatchType() != null) p.setMatchType(patch.getMatchType());
+        if (patch.getTeamSize() != null) p.setTeamSize(patch.getTeamSize());
+        if (patch.getFieldType() != null) p.setFieldType(patch.getFieldType());
+        if (patch.getCost() != null) p.setCost(patch.getCost());
+        if (patch.getParkingAvailable() != null) p.setParkingAvailable(patch.getParkingAvailable());
+        if (patch.getShowerFacilities() != null) p.setShowerFacilities(patch.getShowerFacilities());
+        if (patch.getActivityDays() != null) p.setActivityDays(patch.getActivityDays());
+        if (patch.getActivityTime() != null) p.setActivityTime(patch.getActivityTime());
+        if (patch.getMinPlayers() != null) p.setMinPlayers(patch.getMinPlayers());
+        if (patch.getMaxPlayers() != null) p.setMaxPlayers(patch.getMaxPlayers());
+        if (patch.getMatchRules() != null) p.setMatchRules(patch.getMatchRules());
         return recruitPostRepository.save(p);
     }
 
