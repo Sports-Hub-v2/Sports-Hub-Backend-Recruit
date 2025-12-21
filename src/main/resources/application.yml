@@ -26,3 +26,12 @@ spring:
           time_zone: Asia/Seoul
   flyway:
     enabled: false
+
+logging:
+  level:
+    com.sportshub.recruit: DEBUG
+    root: INFO
+
+team:
+  service:
+    url: http://sportshub-team:8083

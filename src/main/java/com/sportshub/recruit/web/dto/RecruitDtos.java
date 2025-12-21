@@ -89,6 +89,7 @@ public class RecruitDtos {
     public static class ApplicationCreateRequest {
         @NotNull
         private Long applicantProfileId;
+        private Long applicantTeamId; // 경기 신청 시 필요
         private String description;
         private String status;
     }

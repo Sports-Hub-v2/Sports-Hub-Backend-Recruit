@@ -23,13 +23,23 @@ public class RecruitApplication {
     @Column(name = "applicant_profile_id", nullable = false)
     private Long applicantProfileId;
 
+    @Column(name = "applicant_team_id")
+    private Long applicantTeamId;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(nullable = false)
     private String status;
 
-    @Column(name = "application_date", insertable = false, updatable = false)
+    @Column(name = "application_date", nullable = false, updatable = false)
     private LocalDateTime applicationDate;
+
+    @PrePersist
+    protected void onCreate() {
+        if (applicationDate == null) {
+            applicationDate = LocalDateTime.now();
+        }
+    }
 }
 

@@ -49,6 +49,9 @@ public class Match {
     @Column(length = 30)
     private String status = "SCHEDULED";
 
+    @Column(name = "recruit_post_id")
+    private Long recruitPostId;
+
     @Column(length = 100)
     private String referee;
 

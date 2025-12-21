@@ -52,6 +52,9 @@ public class RecruitPost {
     private String targetType;
     private String status;
 
+    @Column(name = "match_id")
+    private Long matchId;
+
     // 모집 조건 필드
     @Column(name = "required_personnel")
     private Integer requiredPersonnel;
